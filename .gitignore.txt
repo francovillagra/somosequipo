@@ -1,5 +1,8 @@
-# Entornos virtuales
-venv/
-__pycache__/
-*.pyc
-.DS_Store
+# Ignora todo por defecto
+*
+
+# Pero incluye el propio .gitignore
+!.gitignore
+
+# Incluye también la carpeta .git
+!.git/
