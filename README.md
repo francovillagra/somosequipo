@@ -6,9 +6,13 @@ Aplicación de **gestión colaborativa de tareas** hecha con **Python** y **Fast
 
 ---
 
-## 🚀 Cómo levantar el proyecto
+✅ DOCUMENTACION:
 
-### Actualizacion:
+## 🚀 Cómo levantar el servidor
+
+## Como detenerlo
+
+## Como usar los Scripts en Windows y Git Bash
 
 ### 🐧 **En Git Bash** (priorizado)
 
