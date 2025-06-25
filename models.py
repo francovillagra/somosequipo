@@ -8,3 +8,7 @@ class Tarea(BaseModel):
     descripcion: Optional[str] = None
     completada: bool = False
     creada_en: datetime = datetime.now()
+
+class TareaActualizacion(BaseModel):
+    titulo: Optional[str] = None
+    descripcion: Optional[str] = None
