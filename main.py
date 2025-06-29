@@ -1,14 +1,23 @@
 from fastapi import FastAPI, HTTPException
-from typing import List
+from typing import List, Optional
 from models import Tarea, TareaActualizacion  # 👈 NUEVO: importamos TareaActualizacion
 
 app = FastAPI(title="SomosEquipo API")
 
 tareas: List[Tarea] = []
 
+# 👇 MODIFICADO: ahora acepta query param "completadas"
 @app.get("/tareas", response_model=List[Tarea])
-def listar_tareas():
-    return tareas
+def listar_tareas(completadas: Optional[bool] = None):
+    """
+    Lista todas las tareas o filtra por estado de completadas.
+    - Sin parámetros: devuelve todas.
+    - completadas=true: solo completadas.
+    - completadas=false: solo pendientes.
+    """
+    if completadas is None:
+        return tareas
+    return [t for t in tareas if t.completada == completadas]
 
 @app.post("/tareas", response_model=Tarea)
 def crear_tarea(tarea: Tarea):
@@ -34,7 +43,6 @@ def eliminar_tarea(tarea_id: int):
             return {"detail": f"Tarea {tarea_id} eliminada correctamente"}
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
 
-# 👇 NUEVO: Endpoint PATCH para actualización parcial
 @app.patch("/tareas/{tarea_id}", response_model=Tarea)
 def actualizar_tarea(tarea_id: int, cambios: TareaActualizacion):
     for tarea in tareas:
