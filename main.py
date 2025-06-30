@@ -1,3 +1,8 @@
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+from fastapi import Request
+from fastapi import status
+
 from fastapi import FastAPI, HTTPException
 from typing import List, Optional
 from models import Tarea, TareaActualizacion  # 👈 NUEVO: importamos TareaActualizacion
@@ -76,3 +81,25 @@ def obtener_tarea(tarea_id: int):
         if tarea.id == tarea_id:
             return tarea
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
+
+
+# 👇 NUEVO: capturar y traducir errores de validación
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    errores_traducidos = []
+    for error in exc.errors():
+        campo = " ➜ ".join(str(loc) for loc in error["loc"])
+        mensaje = error["msg"]
+        # Traducción básica
+        if "value is not a valid integer" in mensaje.lower():
+            mensaje = "El valor debe ser un número entero."
+        elif "field required" in mensaje.lower():
+            mensaje = "Este campo es obligatorio."
+        elif "none is not an allowed value" in mensaje.lower():
+            mensaje = "No se permite un valor nulo."
+        errores_traducidos.append({"campo": campo, "mensaje": mensaje})
+
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detalle": errores_traducidos},
+    )
