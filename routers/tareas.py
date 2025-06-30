@@ -7,7 +7,10 @@ from models import Tarea, TareaActualizacion
 from storage import guardar_tareas_en_archivo, cargar_tareas_desde_archivo
 
 # 📌 Router para todas las operaciones de tareas
-router = APIRouter()
+router = APIRouter(
+    prefix="/tareas",
+    tags=["tareas"]
+)
 
 # 📦 Cargar las tareas almacenadas al arrancar
 tareas: List[Tarea] = cargar_tareas_desde_archivo()

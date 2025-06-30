@@ -1,14 +1,16 @@
 from fastapi import FastAPI
-from tareas import router
-from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from fastapi import Request, status
+
+from routers import tareas
 
 app = FastAPI(title="SomosEquipo API")
 
-app.include_router(router)
+# Incluimos el router de tareas
+app.include_router(tareas.router)
 
-
+# Handler de errores de validación traducidos
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     errores_traducidos = []
