@@ -4,8 +4,11 @@ from fastapi.responses import JSONResponse
 from fastapi import Request, status
 
 from routers import tareas
+from routers.status import status_router
 
 app = FastAPI(title="SomosEquipo API")
+
+app.include_router(status_router)
 
 # Incluimos el router de tareas
 app.include_router(tareas.router)
