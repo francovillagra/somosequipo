@@ -53,3 +53,13 @@ def actualizar_tarea(tarea_id: int, cambios: TareaActualizacion):
                 tarea.descripcion = cambios.descripcion
             return tarea
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
+
+@app.get("/tareas/{tarea_id}", response_model=Tarea)
+def obtener_tarea(tarea_id: int):
+    """
+    Devuelve la tarea con el ID especificado.
+    """
+    for tarea in tareas:
+        if tarea.id == tarea_id:
+            return tarea
+    raise HTTPException(status_code=404, detail="Tarea no encontrada")
