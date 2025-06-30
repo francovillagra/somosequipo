@@ -2,9 +2,9 @@
 
 # 📌 Descripción general
 
-Bitácora de trabajo y cambios realizados en el proyecto SomosEquipo, una API RESTful con FastAPI para la gestión de tareas colaborativas.
+Bitácora de trabajo y cambios realizados en el proyecto **SomosEquipo**, una API RESTful con FastAPI para la gestión de tareas colaborativas.
 
-## 🎯 Estado actual (21-Jun-2025)
+## 🎯 Estado actual (26-Jun-2025)
 
 ✅ API funcional y corriendo con FastAPI.
 
@@ -14,111 +14,152 @@ Bitácora de trabajo y cambios realizados en el proyecto SomosEquipo, una API RE
 
 ✅ Scripts de arranque/parada para Windows (bash y cmd).
 
-✅ Documentación interactiva (Swagger UI) accesible en /docs.
+✅ Documentación interactiva (Swagger UI) accesible en `/docs`.
 
-✅ Funcionalidades implementadas
+✅ Funcionalidades implementadas:
 
 - `GET /tareas`
   Devuelve la lista completa de tareas en memoria.
-
-                Respuesta en formato JSON.
-
-                Sin filtros por ahora (planificado para la próxima etapa).
+  Respuesta en formato JSON.
+  Permite filtro por parámetro `completadas=true/false`.
 
 - `POST /tareas`
   Crea una nueva tarea con ID, título, descripción, estado de completada.
-
-                Valida que el ID no esté duplicado.
+  Valida que el ID no esté duplicado.
 
 - `PUT /tareas/{id}/completar`
   Marca la tarea como completada (cambio de estado booleano).
 
 - `DELETE /tareas/{id}`
   Elimina una tarea por ID.
-
-                Devuelve mensaje de confirmación o error 404 si no existe.
+  Devuelve mensaje de confirmación o error 404 si no existe.
 
 - `PATCH /tareas/{id}`
   Permite actualizar solo algunos campos (parcial) de la tarea.
+  Valida existencia de la tarea.
 
-                Valida existencia de la tarea.
+- `GET /tareas/{id}`
+  Obtiene los detalles de una tarea específica por su ID.
 
-# Configuración y arranque del proyecto
+# ⚙️ Configuración y arranque del proyecto
 
 📦 Dependencias
-Incluidas en requirements.txt.
+Incluidas en `requirements.txt`.
 Instalación recomendada con Python portable incluido:
 
 ./python-portable/bin/python.exe -m pip install -r requirements.txt
 
-# 🚀 Scripts para ejecución
+# 📚 Abrir documentación interactiva
 
-Git Bash / Linux:
+Visitar en navegador:
 
-    ./run.sh: Inicia el servidor con uvicorn en modo recarga.
-
-    ./stop.sh: Busca y mata procesos uvicorn locales.
-
-CMD Windows:
-
-    run.bat: Inicia el servidor uvicorn.
-
-    stop.bat: Detiene el proceso uvicorn por PID.
-
-# Abrir documentación interactiva:
-
-http://127.0.0.1:8000/docs
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 - Permite probar endpoints sin necesidad de herramientas externas.
-
 - Generada automáticamente por FastAPI (Swagger UI).
+- Incluye validación en tiempo real.
 
 # ✅ Roadmap (Próximos pasos)
 
-    Filtrado en GET /tareas (query param completadas=true/false)
-
-    Asignar usuarios/responsables a tareas
-
-    Autenticación básica (token o HTTP Basic)
-
-    Persistencia en base de datos (SQLite o PostgreSQL)
-
-    Endpoint para obtener tarea por ID
-
-    Tests unitarios y de integración
-
-    Despliegue inicial (Heroku / Azure)
+- Asignar usuarios/responsables a tareas
+- Validación de campos más robusta (longitud, formato)
+- Autenticación básica (token o HTTP Basic)
+- Persistencia en base de datos (SQLite o PostgreSQL)
+- Endpoint para obtener tarea por ID con formato detallado
+- Tests unitarios y de integración
+- Modularización en routers/servicios
+- Despliegue inicial (Heroku / Azure)
 
 # ✅ Notas personales
 
-    Proyecto pensado para ser auto-contenido y portable.
-
-    Evita requerir permisos de administrador.
-
-    Ideal para ser base de un curso o práctica de desarrollo backend.
+- Proyecto pensado para ser auto-contenido y portable.
+- Evita requerir permisos de administrador.
+- Ideal como base para cursos o prácticas de desarrollo backend.
+- Pensado para crecimiento incremental y didáctico.
 
 # ✍️ Histórico de cambios
 
-- 2025-06-21
+- 2025-06-26
 
-  Se implementa DELETE /tareas/{id}.
-
-  Se implementa PATCH /tareas/{id} para actualizaciones parciales.
-
-  Scripts run.sh y stop.sh para Git Bash añadidos.
-
-  Ajustes en .gitignore para ignorar venv y pycache.
+  - Se implementa DELETE /tareas/{id}.
+  - Se implementa PATCH /tareas/{id} para actualizaciones parciales.
+  - Scripts run.sh y stop.sh para Git Bash añadidos.
+  - Ajustes en .gitignore para ignorar venv y pycache.
 
 - 2025-06-20
+  - Estructura base del proyecto con FastAPI.
+  - Endpoints GET, POST y PUT completados.
+  - Inclusión de Python portable para evitar instalaciones.
 
-  Estructura base del proyecto con FastAPI.
+---
 
-  Endpoints GET, POST y PUT completados.
+# 🆕 Cambios y avances (21-Jun-2025)
 
-  Inclusión de Python portable para evitar instalaciones.
+✅ Limpieza del repositorio:
 
-# 📌 Mantenimiento
+- Eliminación de versiones viejas y actualización de `.gitignore`.
+
+✅ Montaje y verificación de Python Portable:
+
+- Versión embebida en carpeta `/python-portable`, binarios funcionando.
+- Uso recomendado para evitar instalaciones globales.
+
+✅ Scripts multiplataforma:
+
+- `run.bat` / `stop.bat` (Windows CMD).
+- `run.sh` / `stop.sh` (Git Bash, Linux, macOS).
+
+✅ Ajustes en documentación:
+
+- Inclusión de uso de scripts.
+- Formato de README actualizado.
+- Link para el banner del repositorio en GitHub.
+
+✅ Traducción de errores de validación:
+
+- Captura global con FastAPI exception_handler.
+- Mensajes claros en español para errores de tipo, campos obligatorios y valores nulos.
+
+✅ Filtros en GET /tareas:
+
+- Query param `completadas=true/false` para respuestas dinámicas.
+
+✅ Persistencia en archivo JSON:
+
+- `storage.py` con funciones de guardar/cargar.
+- Manejo de errores por JSON corrupto o vacío.
+- Autocuración del archivo en caso de error.
+
+✅ Endpoint PATCH:
+
+- Actualización parcial de campos: título, descripción, responsable.
+
+✅ Endpoint GET by ID:
+
+- `/tareas/{id}` para obtener detalles de una tarea específica.
+
+✅ Validación avanzada en modelos:
+
+- Restricciones de longitud con Pydantic.
+- Validación de completada con responsable obligatorio.
+- Mensajes de error claros en la documentación Swagger.
+
+✅ Confirmación de push y commits profesionales:
+
+- Uso de convenciones `feat`, `fix`, etc.
+- Mensajes descriptivos en español.
+- Sincronización de ramas.
+
+✅ Plan futuro documentado en Roadmap:
+
+- Modularización en routers/servicios.
+- Persistencia en DB real (SQLite/PostgreSQL).
+- Autenticación y usuarios.
+- Tests automáticos.
+- Despliegue en plataformas cloud.
+
+---
 
 **Franco Villagra**
 
-    Desarrollador Fullstack - Creando soluciones con tecnología.
+Desarrollador Fullstack - Creando soluciones con tecnología.
