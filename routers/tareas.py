@@ -69,22 +69,21 @@ def eliminar_tarea(tarea_id: int):
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
 
 
-@router.patch("/{tarea_id}", response_model=Tarea)
-def actualizar_tarea(tarea_id: int, cambios: TareaActualizacion):
-    """
-    Permite actualizaciones parciales en título, descripción o responsable.
-    """
-    for tarea in tareas:
-        if tarea.id == tarea_id:
-            if cambios.titulo is not None:
-                tarea.titulo = cambios.titulo
-            if cambios.descripcion is not None:
-                tarea.descripcion = cambios.descripcion
-            if cambios.responsable is not None:
-                tarea.responsable = cambios.responsable
-            guardar_tareas_en_archivo(tareas)
-            return tarea
+from models import Tarea, TareaParcial
+
+@router.patch("/{id}", response_model=Tarea)
+def editar_tarea(id: int, tarea_parcial: TareaParcial):
+    tareas = storage.cargar_tareas()
+    for i, tarea in enumerate(tareas):
+        if tarea.id == id:
+            tarea_data = tarea.dict()
+            update_data = tarea_parcial.dict(exclude_unset=True)
+            tarea_data.update(update_data)
+            tareas[i] = Tarea(**tarea_data)
+            storage.guardar_tareas(tareas)
+            return tareas[i]
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
+
 
 
 @router.get("/{tarea_id}", response_model=Tarea)

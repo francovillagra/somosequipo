@@ -26,3 +26,8 @@ class TareaActualizacion(BaseModel):
     titulo: Optional[str] = Field(None, min_length=1, max_length=100)
     descripcion: Optional[str] = Field(None, max_length=500)
     responsable: Optional[str] = Field(None, max_length=100)
+
+class TareaParcial(BaseModel):
+    titulo: Optional[str] = None
+    descripcion: Optional[str] = None
+    completada: Optional[bool] = None
