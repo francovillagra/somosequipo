@@ -6,3 +6,6 @@
 
 # Incluye también la carpeta .git
 !.git/
+
+__pycache__/
+*.pyc
