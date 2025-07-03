@@ -74,16 +74,18 @@ def eliminar_tarea(tarea_id: int):
 
 from models import Tarea, TareaParcial
 
-@router.patch("/{id}", response_model=Tarea)
-def editar_tarea(id: int, tarea_parcial: TareaParcial):
-    tareas = storage.cargar_tareas()
+@router.patch("/{tarea_id}", response_model=Tarea)
+def editar_tarea(tarea_id: int, tarea_parcial: TareaParcial):
+    """
+    Actualiza parcialmente una tarea existente. Solo los campos enviados se modifican.
+    """
     for i, tarea in enumerate(tareas):
-        if tarea.id == id:
+        if tarea.id == tarea_id:
             tarea_data = tarea.dict()
             update_data = tarea_parcial.dict(exclude_unset=True)
             tarea_data.update(update_data)
             tareas[i] = Tarea(**tarea_data)
-            storage.guardar_tareas(tareas)
+            guardar_tareas_en_archivo(tareas)
             return tareas[i]
     raise HTTPException(status_code=404, detail="Tarea no encontrada")
 
