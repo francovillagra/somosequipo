@@ -160,6 +160,104 @@ Visitar en navegador:
 
 ---
 
+# 🆕 Cambios y avances (01-Jul-2025)
+
+✅ Modularización avanzada:
+
+- Routers independientes: `tareas`, `status`, `dependencies`.
+- Limpieza de `main.py` para solo montar routers.
+- Mejor organización para mantenimiento y escalabilidad.
+
+✅ Autenticación básica:
+
+- Middleware con dependencia global en router de tareas.
+- Usuario/contraseña hardcodeados para pruebas iniciales.
+- Protege todos los endpoints de tareas.
+
+✅ Validación de datos en español:
+
+- Handler global para `RequestValidationError`.
+- Mensajes de error claros y localizados en Swagger UI.
+
+✅ Persistencia robusta en JSON:
+
+- Soporte para campo `creada_en` con timezone Buenos Aires.
+- Conversión a ISO8601 para serialización correcta.
+- Manejo de errores por archivo corrupto o vacío con autocuración.
+
+✅ Endpoint PATCH mejorado:
+
+- Modelo `TareaParcial` para actualización parcial.
+- Consistencia con almacenamiento en memoria y en disco.
+- Validación de campos opcionales.
+
+✅ Scripts multiplataforma actualizados:
+
+- `run.sh`, `stop.sh`, `run.bat`, `stop.bat` para arranque/parada fácil.
+- Soporte para Windows CMD y Bash/Linux.
+
+✅ Limpieza de repositorio:
+
+- Eliminación de binarios .pyc y **pycache**.
+- Inclusión de .gitignore definitivo.
+- Commit profesional con convención `chore`.
+
+✅ Confirmación de merge:
+
+- Rama `refactor/modularizacion-routers` mergeada en `master`.
+- Proyecto consolidado con estructura portable y modular.
+
+---
+
+# 🆕 Cambios y avances (03-Jul-2025)
+
+✅ Modularización avanzada:
+
+- Routers independientes: `tareas`, `status`, `dependencies`.
+- Limpieza de `main.py` para solo montar routers.
+- Mejor organización para mantenimiento y escalabilidad.
+
+✅ Autenticación básica:
+
+- Middleware con dependencia global en router de tareas.
+- Usuario/contraseña hardcodeados para pruebas iniciales.
+- Protege todos los endpoints de tareas.
+
+✅ Validación de datos en español:
+
+- Handler global para `RequestValidationError`.
+- Mensajes de error claros y localizados en Swagger UI.
+
+✅ Persistencia robusta en JSON:
+
+- Soporte para campo `creada_en` con timezone Buenos Aires.
+- Conversión a ISO8601 para serialización correcta.
+- Manejo de errores por archivo corrupto o vacío con autocuración.
+
+✅ Endpoint PATCH mejorado:
+
+- Modelo `TareaParcial` para actualización parcial.
+- Consistencia con almacenamiento en memoria y en disco.
+- Validación de campos opcionales.
+
+✅ Scripts multiplataforma actualizados:
+
+- `run.sh`, `stop.sh`, `run.bat`, `stop.bat` para arranque/parada fácil.
+- Soporte para Windows CMD y Bash/Linux.
+
+✅ Limpieza de repositorio:
+
+- Eliminación de binarios .pyc y **pycache**.
+- Inclusión de .gitignore definitivo.
+- Commit profesional con convención `chore`.
+
+✅ Confirmación de merge:
+
+- Rama `refactor/modularizacion-routers` mergeada en `master`.
+- Proyecto consolidado con estructura portable y modular.
+
+---
+
 **Franco Villagra**
 
 Desarrollador Fullstack - Creando soluciones con tecnología.
