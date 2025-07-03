@@ -1,18 +1,1 @@
-[
-    {
-        "id": 0,
-        "titulo": "Primera tarea",
-        "descripcion": "Esto es una prueba",
-        "responsable": "Franco",
-        "completada": false,
-        "creada_en": "2025-06-01T21:55:45.057000Z"
-    },
-    {
-        "id": 1,
-        "titulo": "Primera tarea",
-        "descripcion": "Esto es una prueba",
-        "responsable": "Franco Villagra",
-        "completada": true,
-        "creada_en": "2025-06-01T22:27:21.496000Z"
-    }
-]
+[]

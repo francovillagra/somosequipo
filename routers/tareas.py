@@ -5,6 +5,9 @@ from routers.dependencies import verificar_credenciales
 from models import Tarea, TareaActualizacion
 from storage import guardar_tareas_en_archivo, cargar_tareas_desde_archivo
 
+import storage
+
+
 # 📌 Router para todas las operaciones de tareas
 router = APIRouter(
     prefix="/tareas",
